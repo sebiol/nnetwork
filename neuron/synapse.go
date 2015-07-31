@@ -9,6 +9,10 @@ func (s *Synapse) SetNeuron(neuron *Neuron) {
   s.neuron = neuron
 }
 
+func (s *Synapse) GetWeight() {
+  return s.weight
+}
+
 func (s *Synapse) SetWeight(weight float64) {
   s.weight = weight
 }
