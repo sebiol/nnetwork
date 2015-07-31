@@ -17,6 +17,6 @@ func (s *Synapse) SetWeight(weight float64) {
   s.weight = weight
 }
 
-func (s * Synapse) GetValue() float64 {
+func (s *Synapse) Value() float64 {
   return s.neuron.GetOutput() * s.weight
 }

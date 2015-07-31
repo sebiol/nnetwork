@@ -7,7 +7,7 @@ type OutputFunction func(float64) float64
 func NetInputFunction(input []Synapse) float64{
   var tmpOut float64
   for _, syn := range input {
-    tmpOut += syn.GetValue()
+    tmpOut += syn.Value()
   }
   return tmpOut
 }

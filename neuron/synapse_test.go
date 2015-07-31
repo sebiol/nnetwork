@@ -2,7 +2,7 @@ package neuron
 
 import "testing"
 
-func TestSynapseGetValue(t *testing.T) {
+func TestSynapseValue(t *testing.T) {
   var neuron1 = new(Neuron)
 
   neuronOutput := 1.0
@@ -16,8 +16,8 @@ func TestSynapseGetValue(t *testing.T) {
 
   synapse := &Synapse{ synapseWeight, neuron1 }
 
-  got := synapse.GetValue()
+  got := synapse.Value()
   if got != want {
-    t.Errorf("Synapse.GetValue() == %v, want %v", got, want)
+    t.Errorf("Synapse.Value() == %v, want %v", got, want)
   }
 }
