@@ -2,6 +2,7 @@ package neuron
 
 type Synapse interface {
   Value()     float64
+  WeightedValue()     float64
   Weight()    float64
   SetWeight(float64)
 }
@@ -28,6 +29,10 @@ func (s *ConnectingSynapse) SetWeight(weight float64) {
 }
 
 func (s *ConnectingSynapse) Value() float64 {
+  return s.neuron.GetOutput()
+}
+
+func (s *ConnectingSynapse) WeightedValue() float64 {
   return s.neuron.GetOutput() * s.Weight()
 }
 
@@ -42,5 +47,9 @@ func (s *InhibitingSynapse) SetWeight(weight float64) {
 }
 
 func (s *InhibitingSynapse) Value() float64 {
+  return 1.0
+}
+
+func (s *InhibitingSynapse) WeightedValue() float64 {
   return 1.0 * s.Weight()
 }

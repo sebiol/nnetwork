@@ -12,7 +12,7 @@ func TestConnectingSynapseValue(t *testing.T) {
   neuron1.SetActivationfunction(IdentityFunction)
   neuron1.SetOutputfunction(IdentityFunction)
 
-  want := neuronOutput * synapseWeight
+  want := neuronOutput
 
   synapse := &ConnectingSynapse{ synapseWeight, neuron1 }
 
@@ -22,15 +22,46 @@ func TestConnectingSynapseValue(t *testing.T) {
   }
 }
 
+func TestConnectingSynapseWeightedValue(t *testing.T) {
+  var neuron1 = new(Neuron)
+
+  neuronOutput := 1.0
+  synapseWeight := 0.5
+
+  neuron1.SetInputfunction(func([]Synapse) float64 { return neuronOutput })
+  neuron1.SetActivationfunction(IdentityFunction)
+  neuron1.SetOutputfunction(IdentityFunction)
+
+  want := neuronOutput * synapseWeight
+
+  synapse := &ConnectingSynapse{ synapseWeight, neuron1 }
+
+  got := synapse.WeightedValue()
+  if got != want {
+    t.Errorf("Synapse.WeightedValue() == %v, want %v", got, want)
+  }
+}
+
 func TestInhibitingSynapseValue(t *testing.T) {
+  synValue  := 1.0
+  want := synValue
+
+  synapse := &InhibitingSynapse{ 0.5 }
+  got := synapse.Value()
+  if got != want {
+    t.Errorf("Synapse.Value() == %v, want %v", got, want)
+  }
+}
+
+func TestInhibitingSynapseWeightedValue(t *testing.T) {
   synValue  := 1.0
   synWeight := 0.5
   want := synValue * synWeight
 
   synapse := &InhibitingSynapse{ synWeight }
-  got := synapse.Value()
+  got := synapse.WeightedValue()
   if got != want {
-    t.Errorf("Synapse.Value() == %v, want %v", got, want)
+    t.Errorf("Synapse.WeightedValue() == %v, want %v", got, want)
   }
 }
 
