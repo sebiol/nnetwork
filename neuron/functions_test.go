@@ -37,3 +37,19 @@ func TestBipolarThresholdFunction(t *testing.T) {
     }
   }
 }
+
+func TestNetInputFunction(t *testing.T) {
+  neuron1 := Neuron{_output: 2, _oCalculated: true}
+  neuron2 := Neuron{_output: 3, _oCalculated: true}
+  synapse1 := ConnectingSynapse{ 1, &neuron1 }
+  synapse2 := ConnectingSynapse{ 0.5, &neuron2 }
+  synapses := make([]Synapse, 2)
+  synapses[0] = &synapse1
+  synapses[1] = &synapse2
+
+  want := 2 + 0.5 * 3
+  got := NetInputFunction(synapses)
+  if got != want {
+    t.Errorf("NetInputFunction == %v, want %v", got, want)
+  }
+}
