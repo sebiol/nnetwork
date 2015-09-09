@@ -1,4 +1,4 @@
-package neuron
+package nnetwork
 
 type Neuron struct {
   _output       float64

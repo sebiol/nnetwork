@@ -1,4 +1,4 @@
-package neuron
+package nnetwork
 
 type InputFunction func([]Synapse) float64
 type ActivationFunction func(float64) float64

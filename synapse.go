@@ -1,4 +1,4 @@
-package neuron
+package nnetwork
 
 type Synapse interface {
   Value()     float64
