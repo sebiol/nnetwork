@@ -21,6 +21,10 @@ func (n *Neuron) SetOutputfunction(fp OutputFunction) {
   n.output = fp
 }
 
+func (n *Neuron) GetSynapses() []Synapse {
+  return n.synapses
+}
+
 func (n *Neuron) SetSynapses(syn []Synapse) {
   n.synapses = syn
 }
