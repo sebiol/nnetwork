@@ -13,13 +13,6 @@ type ConnectingSynapse struct {
   neuron  *Neuron
 }
 
-// Each neuron (apart from- in most cases - the input layer) gets one inhibiting synapse.
-// The InhibitingSynapse works as a threshold for the activation of the neuron.
-// As a Synapse the InhibitingSynapse (Threshold) will be trained by the normal learning method
-type InhibitingSynapse struct {
-  weight  float64
-}
-
 func (s *ConnectingSynapse) Weight() float64 {
   return s.weight
 }
@@ -36,7 +29,13 @@ func (s *ConnectingSynapse) WeightedValue() float64 {
   return s.neuron.GetOutput() * s.Weight()
 }
 
-//InhibitingSynapse
+// InhibitingSynapse
+// Each neuron (apart from- in most cases - the input layer) gets one inhibiting synapse.
+// The InhibitingSynapse works as a threshold for the activation of the neuron.
+// As a Synapse the InhibitingSynapse (Threshold) will be trained by the normal learning method
+type InhibitingSynapse struct {
+  weight  float64
+}
 
 func (s *InhibitingSynapse) Weight() float64 {
   return s.weight
