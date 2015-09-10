@@ -16,6 +16,7 @@ func TestNeuronGetOutput(t *testing.T) {
   }
 
   neuron1.SetInputfunction(func([]Synapse)float64 { return 42.0 })
+  got = neuron1.GetOutput()
   if got != want {
     t.Errorf("neuron.GetOutput ignored _oCalculated; want %v, got %v", want, got)
   }
