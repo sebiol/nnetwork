@@ -41,3 +41,53 @@ func TestNeuronLinkedToInputArray(t *testing.T) {
     }
   }
 }
+
+func TestNeuronWithSynapse(t *testing.T) {
+  inputArray := []float64 {1.0, 2.0}
+
+  inputNeuron1 := Neuron{
+    input: func([]Synapse) float64 { return inputArray[0] },
+    activation: IdentityFunction,
+    output: IdentityFunction,
+  }
+  inputNeuron2 := Neuron{
+    input: func([]Synapse) float64 { return inputArray[1] },
+    activation: IdentityFunction,
+    output: IdentityFunction,
+  }
+
+  outputNeuron := Neuron{
+    input: NetInputFunction,
+    activation: IdentityFunction,
+    output: IdentityFunction,
+  }
+  synapses := make([]Synapse, 2 ,2)
+  synapses[0] = &ConnectingSynapse{
+    neuron: &inputNeuron1,
+    weight: 1.0,
+  }
+  synapses[1] = &ConnectingSynapse{
+    neuron: &inputNeuron2,
+    weight: 2.0,
+  }
+  outputNeuron.SetSynapses(synapses)
+
+  want := 5.0
+  got := outputNeuron.GetOutput()
+  if got != want {
+    t.Errorf("Expected %v, got %v", want, got)
+  }
+
+  //adjust the weight of synapse1
+  want = 6.0
+  synapses = outputNeuron.GetSynapses()
+  //alt .GetSynapses()[i].SetWeight(x)
+  synapses[0].SetWeight(2.0)
+  outputNeuron.SetSynapses(synapses)
+  outputNeuron.ResetOutput()
+  got = outputNeuron.GetOutput()
+  if got != want {
+    t.Errorf("Expected %v, got %v", want, got)
+  }
+
+}
