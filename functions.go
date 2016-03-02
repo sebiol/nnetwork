@@ -50,3 +50,10 @@ func BinaryLogisticLinearFunction(input float64) float64 {
 func BipolarLogisticLinearFunction(input float64) float64 {
   return GeneralLogisiticLinearFunction(input, -1, 1, -1, 1)
 }
+
+/*
+ * Based on en.wikipedia.org/wiki/Logistic_function
+*/
+func GeneralLogisticallFunction(input float64, L float64, k float64, x0 float64) float64 {
+  return ( 1 / ( 1 + exp( -k * (input - x0) ) ) )
+}
