@@ -31,3 +31,22 @@ func BinaryThresholdFunction(input float64) float64 {
 func BipolarThresholdFunction(input float64) float64 {
   return GeneralThresholdFUnction(input, 0, -1, 1)
 }
+
+func GeneralLogisiticLinearFunction(input float64, thetaLower float64, thetaUpper, xLower float64, xUpper float64) float64 {
+  if input < thetaLower {
+    return xLower
+  }
+  if input > thetaUpper {
+    return xUpper
+  }
+
+  return input
+}
+
+func BinaryLogisticLinearFunction(input float64) float64 {
+  return GeneralLogisiticLinearFunction(input, 0, 1, 0, 1)
+}
+
+func BipolarLogisticLinearFunction(input float64) float64 {
+  return GeneralLogisiticLinearFunction(input, -1, 1, -1, 1)
+}
