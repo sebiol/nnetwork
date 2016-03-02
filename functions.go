@@ -16,10 +16,18 @@ func IdentityFunction(input float64) float64 {
   return input
 }
 
-func BipolarThresholdFunction(input float64) float64 {
-  if input < 0 {
-    return -1
+func GeneralThresholdFUnction(input float64, threshold float64, x1 float64, x2 float64) float64 {
+  if input < threshold {
+    return x1
   } else {
-    return 1
+    return x2
   }
+}
+
+func BinaryThresholdFunction(input float64) float64 {
+  return GeneralThresholdFUnction(input, 0.5, 0, 1)
+}
+
+func BipolarThresholdFunction(input float64) float64 {
+  return GeneralThresholdFUnction(input, 0, -1, 1)
 }
