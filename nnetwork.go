@@ -55,7 +55,7 @@ func (network *NeuralNetwork) Output() []float64 {
 // entry in the configuration.
 // config[0] is the input layer (handled differently)
 // config[1:-2] hidden layer
-// config[-1] is the output layer 
+// config[-1] is the output layer
 func (network *NeuralNetwork) SetUp(config []LayerConfig) error {
 	if config == nil {
 		return errors.New("No configuration given")
@@ -65,10 +65,10 @@ func (network *NeuralNetwork) SetUp(config []LayerConfig) error {
 	}
 
 	var internalState [][]*Neuron
-  //Create slices to hold layers of Neurons
+	//Create slices to hold layers of Neurons
 	internalState = make([][]*Neuron, len(config))
 	for i, _ := range internalState {
-    //create slice per layer to hold Neurons
+		//create slice per layer to hold Neurons
 		internalState[i] = make([]*Neuron, config[i].NeuronCount)
 	}
 
@@ -133,9 +133,9 @@ func (network *NeuralNetwork) Run(netinput []float64) ([]float64, error) {
 	if len(netinput) < len(network.InternalState[0]) {
 		return nil, errors.New("Input array to small")
 	}
-  // reset neuron output which is cached for efficiency (see Neuron)
+	// reset neuron output which is cached for efficiency (see Neuron)
 	network.resetNetwork()
-  // TODO: calculate result
+	// TODO: calculate result
 	return network.output, nil
 }
 

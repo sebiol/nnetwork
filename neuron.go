@@ -1,43 +1,43 @@
 package nnetwork
 
 type Neuron struct {
-  _output       float64
-  _oCalculated  bool
-  input         InputFunction
-  activation    ActivationFunction
-  output        OutputFunction
-  synapses      []Synapse
+	_output      float64
+	_oCalculated bool
+	input        InputFunction
+	activation   ActivationFunction
+	output       OutputFunction
+	synapses     []Synapse
 }
 
 func (n *Neuron) SetInputfunction(fp InputFunction) {
-  n.input = fp
+	n.input = fp
 }
 
 func (n *Neuron) SetActivationfunction(fp ActivationFunction) {
-  n.activation = fp
+	n.activation = fp
 }
 
 func (n *Neuron) SetOutputfunction(fp OutputFunction) {
-  n.output = fp
+	n.output = fp
 }
 
 func (n *Neuron) GetSynapses() []Synapse {
-  return n.synapses
+	return n.synapses
 }
 
 func (n *Neuron) SetSynapses(syn []Synapse) {
-  n.synapses = syn
+	n.synapses = syn
 }
 
 func (n *Neuron) ResetOutput() {
-  n._output = 0
-  n._oCalculated = false
+	n._output = 0
+	n._oCalculated = false
 }
 
 func (n *Neuron) GetOutput() float64 {
-  if !n._oCalculated {
-    n._output = n.output( n.activation( n.input(n.synapses)  ) )
-    n._oCalculated = true
-  }
-  return n._output
+	if !n._oCalculated {
+		n._output = n.output(n.activation(n.input(n.synapses)))
+		n._oCalculated = true
+	}
+	return n._output
 }
